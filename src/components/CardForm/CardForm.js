@@ -5,7 +5,6 @@ import TextInput from '../TextInput/TextInput.js';
 import { useDispatch } from 'react-redux';
 
 const CardForm = ({ columnId }) => {
-  console.log('columnId', columnId);
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
 
