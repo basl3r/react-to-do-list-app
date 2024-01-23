@@ -3,7 +3,7 @@ import TextInput from '../TextInput/TextInput.js';
 import Button from '../Button/Button.js'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-
+import { updateString } from '../../redux/store.js';
 const SearchForm = () => {
 
   const [searchedString, setSearchedString] = useState('');
@@ -12,7 +12,7 @@ const SearchForm = () => {
   // eslint-disable-next-line no-unused-vars
   const handleSearch = e => { 
     e.preventDefault();
-    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: {searchedString}})
+    dispatch(updateString({ searchedString }));
     setSearchedString('');
   };
 
