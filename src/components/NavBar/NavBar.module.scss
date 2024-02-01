@@ -27,7 +27,8 @@
     transition: $transition-color;
   }
 
-  a:hover {
-    color: $color-success;
+  a.linkActive {
+    color: $color-warning;
   }
 }
+
