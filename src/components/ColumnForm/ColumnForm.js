@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput.js';
 import { useDispatch } from 'react-redux';
-import { addColumn } from '../../redux/store.js';
+import { addColumn } from '../../redux/columnsReducer.js';
 //import shortid from 'shortid';
 
 const ColumnForm = ({props}) => {

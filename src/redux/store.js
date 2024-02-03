@@ -1,57 +1,18 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
-import strContains from '../utils/strContains';
+import listsReducer from './listsReducer';
+import columnsReducer from './columnsReducer';
+import cardsReducer from './cardsReducer';
+import searchStringReducer from './searchStringReducer';
 
-// action creators
-export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload});
-export const updateString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload});
-export const addList = payload => ( { type: 'ADD_LIST', payload});
-export const updateFavourite = payload => ( { type: 'TOGGLE_CARD_FAVORITE', payload});
-
-//selectors
-export const getFilteredCards = ({ cards, searchString }, columnId) => cards
-  .filter(card => card.columnId === columnId && strContains(card.title, searchString));
-
-export const getAllColumns = ({columns}) => {
-  return columns;
-};
-
-export const getAllLists = ({lists}) => {
-  return lists;
-};
-
-export const getListById = ({ lists }, listId ) => {
-  return lists.find(list => list.id === listId);
-};
-
-export const getColumnsByList = ({ columns }, listId) => {
-  return columns.filter(column => column.listId === listId);
-};
-
-export const selectFavouriteCards = state => {
-  return state.cards.filter(card => card.isFavourite);
-};
-
-const reducer = (state, action) => {
-switch(action.type) {
-  case 'ADD_COLUMN':
-    return { ...state, columns: [...state.columns, { ...action.payload, id: shortid()}]};
-  case 'ADD_CARD':
-    return {...state, cards: [...state.cards, {...action.payload, id: shortid()}]};
-  case 'UPDATE_SEARCHSTRING':
-    return {...state, searchString: action.payload.searchedString};
-  case 'ADD_LIST':
-    return {...state, lists: [...state.lists, {...action.payload, id: shortid()}]};
-  case 'TOGGLE_CARD_FAVORITE':
-    return { ...state, cards: state.cards.map(card => (card.id === action.payload) ? { ...card, isFavourite: !card.isFavourite } : card) };
-  default:
-    return state;
+const subreducers = {
+  lists: listsReducer,
+  columns: columnsReducer,
+  cards: cardsReducer,
+  searchString: searchStringReducer
 }
-  // if(action.type === 'ADD_COLUMN') return { ...state, columns: [...state.columns, { ...action.newColumn, id: shortid()}]}
-  //return state;
-};
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   reducer,

@@ -2,7 +2,7 @@ import styles from './Column.module.scss';
 import Card from '../Card/Card.js';
 import CardForm from '../CardForm/CardForm';
 import { useSelector } from 'react-redux';
-import { getFilteredCards } from '../../redux/store.js';
+import { getFilteredCards } from '../../redux/cardsReducer.js';
 
 const Column = (props) => {
 
@@ -12,7 +12,7 @@ const Column = (props) => {
     <article className={styles.column}>
       <h2 className={styles.title}><span className={styles.icon + ' fa fa-' + props.icon}></span>{props.title}</h2>
       <ul className={styles.cards}>
-        {cards.map(card => <Card key={card.id} title={card.title} isFavourite={card.isFavourite} id={card.id} />)}
+        {cards.map(card => <Card key={card.id} title={card.title} isFavourite={card.isFavourite} id={card.id} showDeleteButton={true} />)}
       </ul>
       <CardForm columnId={props.id} />
     </article>

@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput.js';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addList } from '../../redux/store.js';
+import { addList } from '../../redux/listsReducer.js';
 
 const ListForm = () => {
 
