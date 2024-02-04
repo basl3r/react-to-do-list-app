@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 const Card = props => {
 
+  console.log('props.isFavourite', props.isFavourite);
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -18,7 +19,7 @@ const Card = props => {
   return (
       <li className={styles.card}>{props.title}
       <div>
-        <button onClick={handleClick}><i className={`fa ${props.isFavorite ? 'fa-star' : 'fa-star-o'}`}></i></button>
+        <button onClick={handleClick}><i className={`fa ${props.isFavourite ? 'fa-star' : 'fa-star-o'}`}></i></button>
         { props.showDeleteButton && (<button onClick={handleDelete}><i className='fa fa-trash'></i></button>)}
       </div>
       </li>      
